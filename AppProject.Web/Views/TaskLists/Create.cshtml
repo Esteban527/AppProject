@@ -1,0 +1,25 @@
+﻿@model AppProject.Web.DTOs.TaskListDTO
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<form asp-action="Create" method="POST">
+
+    <div class="mb-3">
+        <label class="form-label">Tarea</label>
+        <input type="text" class="form-control" asp-for="Description" placeholder="Escribe la tarea..">
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+
+    <button class="btn btn-primary">Guardar</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

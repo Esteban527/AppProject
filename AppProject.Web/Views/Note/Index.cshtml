@@ -1,0 +1,46 @@
+﻿@model IEnumerable<AppProject.Web.Data.Entities.Note>
+@{
+    ViewData["Title"] = "Notes";
+}
+
+<h1>Notes</h1>
+
+<form asp-controller="Note" asp-action="Index" method="get">
+    <div class="form-group">
+        <label for="categoryId">Filter by Category:</label>
+        <select id="categoryId" name="categoryId" class="form-control">
+            <option value="">All Categories</option>
+            @foreach (var category in ViewData["Categories"] as IEnumerable<AppProject.Web.Data.Entities.Category>)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+
+<hr />
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New Note</a>
+</p>
+
+<div class="row">
+    @foreach (var note in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">@note.Title</h5>
+                    <p class="card-text">@note.Content</p>
+                    <p class="card-text">Category: @note.Category?.Name</p>
+                </div>
+                <div class="card-footer">
+                    <a href="@Url.Action("Edit", new { id = note.Id })" class="btn btn-primary">Edit</a>
+                    <a href="@Url.Action("Delete", new { id = note.Id })" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+    }
+</div>

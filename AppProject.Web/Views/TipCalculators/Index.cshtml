@@ -1,0 +1,28 @@
+﻿@model AppProject.Web.Data.Entities.TipCalculator
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Calculadora de Propinas</h1>
+
+<form asp-action="Index" method="post">
+    <div>
+        <label for="BillTotal">Monto de la Cuenta:</label>
+        <input type="number" asp-for="BillTotal" />
+    </div>
+    <br>
+    <div>
+        <label for="TipPercentage">Porcentaje de Propina:</label>
+        <input type="number" asp-for="TipPercentage" />
+    </div>
+    <button type="submit">Calcular</button>
+</form>
+
+@if (Model != null && Model.BillTotal > 0)
+{
+    <div>
+        <p>Monto de la Cuenta: @Model.BillTotal</p>
+        <p>Porcentaje de Propina: @Model.TipPercentage%</p>
+        <p>Propina: @Model.Tip</p>
+    </div>
+}

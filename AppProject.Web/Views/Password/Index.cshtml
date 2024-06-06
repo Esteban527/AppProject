@@ -1,0 +1,43 @@
+﻿@model AppProject.Web.Data.Entities.Password
+@{
+    ViewData["Title"] = "Generador de Contraseñas Seguras";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Generate" method="post">
+    <div>
+        <label for="length">Longitud:</label>
+        <input type="number" id="length" asp-for="Length" class="form-control" />
+    </div>
+
+    <div class="form-check">
+        <input type="checkbox" id="includeLowercase" asp-for="IncludeLowercase" class="form-check-input" />
+        <label class="form-check-label" for="includeLowercase">Incluir Minúsculas</label>
+    </div>
+
+    <div class="form-check">
+        <input type="checkbox" id="includeUppercase" asp-for="IncludeUppercase" class="form-check-input" />
+        <label class="form-check-label" for="includeUppercase">Incluir Mayúsculas</label>
+    </div>
+
+    <div class="form-check">
+        <input type="checkbox" id="includeNumbers" asp-for="IncludeNumbers" class="form-check-input" />
+        <label class="form-check-label" for="includeNumbers">Incluir Números</label>
+    </div>
+
+    <div class="form-check">
+        <input type="checkbox" id="includeSymbols" asp-for="IncludeSymbols" class="form-check-input" />
+        <label class="form-check-label" for="includeSymbols">Incluir Símbolos</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Generar Contraseña</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.GeneratedPassword))
+{
+    <div>
+        <h2>Contraseña Generada:</h2>
+        <input type="text" id="generatedPassword" asp-for="GeneratedPassword" class="form-control" readonly />
+    </div>
+}
